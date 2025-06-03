@@ -11,22 +11,39 @@ const PointsTitle = styled.h2`
   margin-bottom: 15px;
 `;
 
+const NoData = styled.div`
+  font-size: 1rem;
+  color: #718096;
+  margin-top: 20px;
+`;
+
 function CustomerRewards({ transactions, customerId }) {
   const customerTransactions = transactions.filter(
     (t) => t.customerId === customerId
   );
 
-  const months = [...new Set(customerTransactions.map((t) => {
-    const date = new Date(t.date);
-    return `${date.getFullYear()}-${date.getMonth() + 1}`;
-  }))];
+  const uniqueMonths = [
+    ...new Set(
+      customerTransactions.map((t) => new Date(t.date).getMonth() + 1)
+    ),
+  ];
+  // const uniqueYears = [
+  //   ...new Set(
+  //     customerTransactions.map((t) => new Date(t.date).getFullYear())
+  //   ),
+  // ];
 
-  const [selectedMonth, setSelectedMonth] = useState(months[0]);
+  const staticYears = [2022, 2023, 2024, 2025];
+
+  const [selectedMonth, setSelectedMonth] = useState(uniqueMonths[0] || '');
+  const [selectedYear, setSelectedYear] = useState(2025);
 
   const filteredTransactions = customerTransactions.filter((t) => {
     const date = new Date(t.date);
-    const monthYear = `${date.getFullYear()}-${date.getMonth() + 1}`;
-    return monthYear === selectedMonth;
+    return (
+      date.getFullYear() === parseInt(selectedYear) &&
+      date.getMonth() + 1 === parseInt(selectedMonth)
+    );
   });
 
   const monthlyPoints = filteredTransactions.reduce(
@@ -37,12 +54,19 @@ function CustomerRewards({ transactions, customerId }) {
   return (
     <div>
       <Filters
-        months={months}
+        months={uniqueMonths}
+        years={staticYears}
         selectedMonth={selectedMonth}
         setSelectedMonth={setSelectedMonth}
+        selectedYear={selectedYear}
+        setSelectedYear={setSelectedYear}
       />
       <PointsTitle>Monthly Rewards: {monthlyPoints} points</PointsTitle>
-      <TransactionTable transactions={filteredTransactions} />
+      {filteredTransactions.length === 0 ? (
+        <NoData>No transactions available for this period.</NoData>
+      ) : (
+        <TransactionTable transactions={filteredTransactions} />
+      )}
     </div>
   );
 }

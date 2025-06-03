@@ -59,6 +59,14 @@ const transactionData = [
   { transactionId: "txn009", customerId: "cust01", customerName: "Alice", amount: 120, date: "2025-01-25" },
   { transactionId: "txn010", customerId: "cust01", customerName: "Alice", amount: 130, date: "2025-01-25" },
   { transactionId: "txn011", customerId: "cust01", customerName: "Alice", amount: 140, date: "2025-01-25" },
+  { transactionId: "txn012", customerId: "cust01", customerName: "Alice", amount: 110, date: "2025-01-25" },
+  { transactionId: "txn013", customerId: "cust01", customerName: "Alice", amount: 170, date: "2025-01-25" },
+  { transactionId: "txn014", customerId: "cust01", customerName: "Alice", amount: 20, date: "2025-01-25" },
+  { transactionId: "txn015", customerId: "cust01", customerName: "Alice", amount: 44, date: "2025-01-25" },
+  { transactionId: "txn016", customerId: "cust01", customerName: "Alice", amount: 50, date: "2025-01-25" },
+  { transactionId: "txn017", customerId: "cust01", customerName: "Alice", amount: 34, date: "2025-01-25" },
+  { transactionId: "txn018", customerId: "cust01", customerName: "Alice", amount: 190, date: "2025-01-25" },
+  { transactionId: "txn019", customerId: "cust01", customerName: "Alice", amount: 10, date: "2025-01-25" },
 
   // February
   { transactionId: "txn008", customerId: "cust01", customerName: "Alice", amount: 200, date: "2025-02-02" },

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { calculateRewardPoints } from '../utils/calculateRewards';
 import styled from 'styled-components';
+import { Pagination, Stack } from '@mui/material';
 
 const TableWrapper = styled.div`
   margin-top: 20px;
@@ -28,25 +29,25 @@ const Td = styled.td`
   border-bottom: 1px solid #eee;
 `;
 
-const Pagination = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
-`;
+// const Pagination = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+//   margin-top: 15px;
+// `;
 
-const PageButton = styled.button`
-  background: #3182ce;
-  color: white;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 500;
-  &:disabled {
-    background: #cbd5e0;
-    cursor: not-allowed;
-  }
-`;
+// const PageButton = styled.button`
+//   background: #3182ce;
+//   color: white;
+//   padding: 8px 12px;
+//   border: none;
+//   border-radius: 6px;
+//   cursor: pointer;
+//   font-weight: 500;
+//   &:disabled {
+//     background: #cbd5e0;
+//     cursor: not-allowed;
+//   }
+// `;
 
 function TransactionTable({ transactions }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -85,7 +86,7 @@ function TransactionTable({ transactions }) {
           ))}
         </tbody>
       </StyledTable>
-      <Pagination>
+      {/* <Pagination>
         <PageButton
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
@@ -99,7 +100,15 @@ function TransactionTable({ transactions }) {
         >
           Next
         </PageButton>
-      </Pagination>
+      </Pagination> */}
+      <Stack spacing={2} mt={2} alignItems="center">
+        <Pagination
+          count={totalPages}
+          page={currentPage}
+          onChange={(e, value) => setCurrentPage(value)}
+          color="primary"
+        />
+      </Stack>
     </TableWrapper>
   );
 }
